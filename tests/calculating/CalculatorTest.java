@@ -20,10 +20,8 @@ public class CalculatorTest {
         assertEquals( 4F, Calculator.evaluate("2+2"), 0.01);
         assertEquals( 2F, Calculator.evaluate("0+2"), 0.01);
         assertEquals( 2F, Calculator.evaluate("2+0"), 0.01);
-        assertEquals( 14F, Calculator.evaluate("10+4"), 0.01);
-        assertEquals( 106F, Calculator.evaluate("102+4"), 0.01);
-        assertEquals( 0.8F, Calculator.evaluate("0.4+0.4"), 0.01);
-        assertEquals( 1.4F, Calculator.evaluate("1+0.4"), 0.01);
+        assertEquals( 12F, Calculator.evaluate("10+2"), 0.01);
+        assertEquals( 102F, Calculator.evaluate("100+2"), 0.01);
     }
 
     @Test
@@ -31,10 +29,8 @@ public class CalculatorTest {
 
         assertEquals(3F, Calculator.evaluate("5-2"), 0.01);
         assertEquals(-3F, Calculator.evaluate("2-5"), 0.01);
-        assertEquals(3.1F, Calculator.evaluate("5.1-2"), 0.01);
-        assertEquals(-3.1F, Calculator.evaluate("2-5.1"), 0.01);
         assertEquals(8F, Calculator.evaluate("10-2"), 0.01);
-        assertEquals(102F, Calculator.evaluate("122-20"), 0.01);
+        assertEquals(80F, Calculator.evaluate("100-20"), 0.01);
     }
 
     @Test
@@ -47,19 +43,45 @@ public class CalculatorTest {
         assertEquals(0.01F, Calculator.evaluate("1/100"), 0.01);
     }
 
-   /* @Test
-    public void evaluate_dividingByZero_ex() {
-
+   @Test (expected = ArithmeticException.class)
+    public void evaluate_dividingByZero_ex() throws Exception {
         Calculator.evaluate("2/0");
-        fail();
 
-    }*/
+    }
 
     @Test
     public void multiplyingTwoPositiveIntegers() {
 
         assertEquals(10F, Calculator.evaluate("5*2"), 0.01);
-        assertEquals(1F, Calculator.evaluate("0.5*2"), 0.01);
-        assertEquals(0.25F, Calculator.evaluate("0.5*0.5"), 0.01);
+        assertEquals(100F, Calculator.evaluate("50*2"), 0.01);
+        assertEquals(100F, Calculator.evaluate("10*10"), 0.01);
+    }
+
+    @Test
+    public void evaluate_additionOfTwoPositiveReals_ok() {
+
+
+        assertEquals( 0.8F, Calculator.evaluate("0.4+0.4"), 0.01);
+        assertEquals( 1.4F, Calculator.evaluate("1+0.4"), 0.01);
+        assertEquals( 2.5F, Calculator.evaluate("1.1+1.4"), 0.01);
+        assertEquals( 20.52F, Calculator.evaluate("10.12+10.4"), 0.01);
+    }
+
+    @Test
+    public void multiplyingTwoPositiveReals() {
+
+
+         assertEquals(1F, Calculator.evaluate("0.5*2"), 0.01);
+         assertEquals(0.25F, Calculator.evaluate("0.5*0.5"), 0.01);
+    }
+
+    @Test
+    public void evaluate_subtractionOfTwoPositiveReals_ok() {
+
+        assertEquals(3.1F, Calculator.evaluate("5.1-2"), 0.01);
+        assertEquals(-3.1F, Calculator.evaluate("2-5.1"), 0.01);
+        assertEquals(4.9F, Calculator.evaluate("10-5.1"), 0.01);
+        assertEquals(0.01F, Calculator.evaluate("1-0.99"), 0.01);
+
     }
 }
